@@ -2,6 +2,7 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-4">
+    <a href="/transaksi/" class="btn btn-danger mb-3">Back</a>
     <h2>Kategori Saya</h2>
     <a href="/kategori/create" class="btn btn-primary mb-3">+ Tambah Kategori</a>
 

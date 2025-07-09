@@ -1,4 +1,5 @@
-<?php namespace App\Controllers;
+<?php
+namespace App\Controllers;
 
 use App\Models\TransaksiModel;
 use App\Models\KategoriModel;
@@ -15,27 +16,30 @@ class Transaksi extends BaseController
     }
 
 
-public function create()
-{
-    $kategoriModel = new KategoriModel();
-    $userId = session()->get('user_id');
+    public function create()
+    {
+        $kategoriModel = new \App\Models\KategoriModel();
+        $userId = session()->get('user_id');
 
-    $data['kategori'] = $kategoriModel
-        ->where('user_id', $userId)
-        ->findAll(); // Ambil semua, nanti di-filter via JS
+        $kategori = $kategoriModel
+            ->groupStart()
+            ->where('user_id', $userId)
+            ->orWhere('user_id', null)
+            ->groupEnd()
+            ->findAll();
 
-    return view('transaksi/create', $data);
-}
+        return view('transaksi/create', ['kategori' => $kategori]);
+    }
 
     public function store()
     {
         $model = new TransaksiModel();
         $model->save([
-            'user_id'    => session()->get('user_id'),
-            'tanggal'    => $this->request->getPost('tanggal'),
-            'kategori'   => $this->request->getPost('kategori'),
-            'tipe'       => $this->request->getPost('tipe'),
-            'nominal'    => $this->request->getPost('nominal'),
+            'user_id' => session()->get('user_id'),
+            'tanggal' => $this->request->getPost('tanggal'),
+            'kategori' => $this->request->getPost('kategori'),
+            'tipe' => $this->request->getPost('tipe'),
+            'nominal' => $this->request->getPost('nominal'),
             'keterangan' => $this->request->getPost('keterangan'),
         ]);
 
@@ -54,10 +58,10 @@ public function create()
     {
         $model = new TransaksiModel();
         $model->update($id, [
-            'tanggal'    => $this->request->getPost('tanggal'),
-            'kategori'   => $this->request->getPost('kategori'),
-            'tipe'       => $this->request->getPost('tipe'),
-            'nominal'    => $this->request->getPost('nominal'),
+            'tanggal' => $this->request->getPost('tanggal'),
+            'kategori' => $this->request->getPost('kategori'),
+            'tipe' => $this->request->getPost('tipe'),
+            'nominal' => $this->request->getPost('nominal'),
             'keterangan' => $this->request->getPost('keterangan'),
         ]);
 

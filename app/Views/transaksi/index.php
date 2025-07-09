@@ -2,7 +2,11 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-4">
-    <h2>Daftar Transaksi</h2>
+    <a href="/dashboard" class="btn btn-danger mb-3">Back</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Daftar Transaksi</h2>
+    <a href="/kategori/" class="btn btn-success">+ Tambah Kategori</a>
+    </div>
     <a href="/transaksi/create" class="btn btn-primary mb-3">+ Tambah Transaksi</a>
 
     <?php if (session()->getFlashdata('success')): ?>

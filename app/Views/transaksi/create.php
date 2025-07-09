@@ -6,7 +6,7 @@
     <form action="/transaksi/store" method="post">
         <?= csrf_field() ?>
 
-        <!-- Tipe Transaksi -->
+
         <label>Tipe Transaksi:</label>
         <select name="tipe" id="tipe" class="form-control mb-2" required>
             <option value="">Pilih Tipe</option>
@@ -14,18 +14,19 @@
             <option value="pengeluaran">Pengeluaran</option>
         </select>
 
-        <!-- Kategori (Akan berubah berdasarkan tipe) -->
+
         <label>Kategori:</label>
-        <select name="kategori" id="kategori" class="form-control mb-2" required>
-            <option value="">Pilih Tipe Terlebih Dahulu</option>
+        <select name="kategori" id="kategori" class="form-control" required>
+            <option value="">-- Pilih Kategori --</option>
             <?php foreach ($kategori as $k): ?>
-                <option value="<?= $k['nama'] ?>" data-tipe="<?= $k['tipe'] ?>">
-                    <?= ucfirst($k['nama']) ?>
+                <option value="<?= $k['id'] ?>" data-tipe="<?= $k['tipe'] ?>">
+                    <?= $k['nama'] ?>
                 </option>
-            <?php endforeach ?>
+            <?php endforeach;
+            ?>
         </select>
 
-        <!-- Form lainnya -->
+
         <label>Nominal:</label>
         <input type="number" name="nominal" class="form-control mb-2" required>
 
@@ -40,27 +41,23 @@
     </form>
 </div>
 
-<!-- JS untuk filter kategori -->
 <script>
-    const tipeSelect = document.getElementById('tipe');
-    const kategoriSelect = document.getElementById('kategori');
-    const semuaOption = [...kategoriSelect.options];
+    const selectTipe = document.getElementById('tipe');
+    const kategoriOptions = document.querySelectorAll('#kategori option');
 
-    tipeSelect.addEventListener('change', function () {
+    selectTipe.addEventListener('change', function () {
         const tipeDipilih = this.value;
 
-        // Kosongkan dulu
-        kategoriSelect.innerHTML = '';
-
-        // Tambah opsi default
-        kategoriSelect.appendChild(new Option('Pilih Kategori', ''));
-
-        // Filter & tampilkan berdasarkan tipe
-        semuaOption.forEach(opt => {
-            if (opt.dataset?.tipe === tipeDipilih) {
-                kategoriSelect.appendChild(opt.cloneNode(true));
+        kategoriOptions.forEach(option => {
+            if (option.dataset.tipe === tipeDipilih || option.value === '') {
+                option.style.display = 'block';
+            } else {
+                option.style.display = 'none';
             }
         });
+
+
+        document.getElementById('kategori').value = '';
     });
 </script>
 
