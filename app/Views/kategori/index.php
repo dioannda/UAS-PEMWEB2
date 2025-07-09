@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-4">
-    <a href="/transaksi/" class="btn btn-danger mb-3">Back</a>
+    <a href="/transaksi/" class="btn btn-danger mb-3">← Back</a>
     <h2>Kategori Saya</h2>
     <a href="/kategori/create" class="btn btn-primary mb-3">+ Tambah Kategori</a>
 
@@ -25,7 +25,8 @@
                     <td><?= ucfirst($k['tipe']) ?></td>
                     <td>
                         <a href="/kategori/edit/<?= $k['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="/kategori/delete/<?= $k['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus kategori ini?')">Hapus</a>
+                        <a href="/kategori/delete/<?= $k['id'] ?>" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Hapus kategori ini?')">Hapus</a>
                     </td>
                 </tr>
             <?php endforeach ?>

@@ -34,4 +34,13 @@ $routes->get('/kategori/delete/(:num)', 'Kategori::delete/$1', ['filter' => 'aut
 $routes->get('/laporan', 'Laporan::index', ['filter' => 'auth']);
 $routes->post('/laporan', 'Laporan::index', ['filter' => 'auth']);
 $routes->get('/laporan/pdf', 'Laporan::exportPdf', ['filter' => 'auth']);
+$routes->get('/pengingat', 'PengingatPembayaranController::index');
+$routes->get('/pengingat/create', 'PengingatPembayaranController::create');
+$routes->post('/pengingat/store', 'PengingatPembayaranController::store');
+$routes->get('/pengingat/selesai/(:num)', 'PengingatPembayaranController::selesai/$1');
+$routes->get('/pengingat/edit/(:num)', 'PengingatPembayaranController::edit/$1');
+$routes->post('/pengingat/update/(:num)', 'PengingatPembayaranController::update/$1');
+$routes->get('/pengingat/delete/(:num)', 'PengingatPembayaranController::delete/$1');
+$routes->get('/pengingat/selesai/(:num)', 'PengingatPembayaranController::markAsSelesai/$1'); // opsional
+
 

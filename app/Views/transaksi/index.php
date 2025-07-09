@@ -2,10 +2,10 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-4">
-    <a href="/dashboard" class="btn btn-danger mb-3">Back</a>
+    <a href="/dashboard" class="btn btn-danger mb-3">← Back</a>
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Daftar Transaksi</h2>
-    <a href="/kategori/" class="btn btn-success">+ Tambah Kategori</a>
+        <a href="/kategori/" class="btn btn-success">+ Tambah Kategori</a>
     </div>
     <a href="/transaksi/create" class="btn btn-primary mb-3">+ Tambah Transaksi</a>
 
@@ -32,7 +32,8 @@
                     <td>Rp<?= number_format($t['nominal'], 0, ',', '.') ?></td>
                     <td>
                         <a href="/transaksi/edit/<?= $t['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="/transaksi/delete/<?= $t['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus transaksi ini?')">Hapus</a>
+                        <a href="/transaksi/delete/<?= $t['id'] ?>" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Hapus transaksi ini?')">Hapus</a>
                     </td>
                 </tr>
             <?php endforeach ?>

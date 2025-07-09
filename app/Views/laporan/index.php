@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-4">
-    <a href="/dashboard/" class="btn btn-danger mb-3">Back</a>
+    <a href="/dashboard/" class="btn btn-danger mb-3">← Back</a>
     <h2>Laporan Keuangan</h2>
 
     <form action="/laporan" method="post" class="row g-3 mb-3">
@@ -28,7 +28,8 @@
             <button type="submit" class="btn btn-primary">Tampilkan</button>
         </div>
         <div class="col-md-3 align-self-end">
-            <a href="/laporan/pdf?bulan=<?= $bulan ?>&tahun=<?= $tahun ?>" class="btn btn-danger" target="_blank">Unduh PDF</a>
+            <a href="/laporan/pdf?bulan=<?= $bulan ?>&tahun=<?= $tahun ?>" class="btn btn-danger" target="_blank">Unduh
+                PDF</a>
         </div>
     </form>
 
@@ -42,7 +43,11 @@
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
-                <th>Tanggal</th><th>Kategori</th><th>Nominal</th><th>Tipe</th><th>Keterangan</th>
+                <th>Tanggal</th>
+                <th>Kategori</th>
+                <th>Nominal</th>
+                <th>Tipe</th>
+                <th>Keterangan</th>
             </tr>
         </thead>
         <tbody>

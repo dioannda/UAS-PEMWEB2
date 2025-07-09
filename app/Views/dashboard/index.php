@@ -2,22 +2,24 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-4">
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Ringkasan Keuangan Bulan Ini</h2>
-    <div>
-        <a href="/laporan" class="btn btn-outline-primary me-2">📄 Lihat Laporan</a>
-        <a href="/transaksi/" class="btn btn-success">+ Tambah Transaksi</a>
-    </div>
-</div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Ringkasan Keuangan Bulan Ini</h2>
+        <div>
+            <a href="/laporan" class="btn btn-outline-primary me-2">📄 Lihat Laporan</a>
+            <a href="/transaksi/" class="btn btn-success">+ Tambah Transaksi</a>
+            <a href="/pengingat" class="btn btn-outline-secondary me-2">🔔 Pengingat Pembayaran</a>
 
-    <?php if ($showReminder): ?>
-    <div class="alert alert-warning d-flex align-items-center gap-2">
-        <i class="bi bi-exclamation-triangle-fill"></i>
-        <div>Hai <?= session()->get('nama') ?>, kamu belum mencatat transaksi hari ini. Yuk catat sekarang! 
-            <a href="/transaksi/create" class="btn btn-sm btn-warning ms-2">+ Catat Sekarang</a>
         </div>
     </div>
-<?php endif; ?>
+
+    <?php if ($showReminder): ?>
+        <div class="alert alert-warning d-flex align-items-center gap-2">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <div>Hai <?= session()->get('nama') ?>, kamu belum mencatat transaksi hari ini. Yuk catat sekarang!
+                <a href="/transaksi/create" class="btn btn-sm btn-warning ms-2">+ Catat Sekarang</a>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <div class="row">
         <div class="col-md-4">
@@ -45,7 +47,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <h4 class="mt-5">Grafik Keuangan Bulan Ini</h4>
     <canvas id="grafikKeuangan"></canvas>
@@ -73,8 +75,6 @@
         }
     });
 </script>
-<div class="mt-5 mb-2 d-flex justify-content-center">
-    <a href="/logout" class="btn btn-outline-danger px-4">Logout</a>
-</div>
+
 
 <?= $this->endSection() ?>
