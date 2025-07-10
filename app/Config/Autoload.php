@@ -90,5 +90,7 @@ class Autoload extends AutoloadConfig
      *
      * @var list<string>
      */
-    public $helpers = [];
+    // Di app/Config/Autoload.php
+    public $helpers = ['url'];
+
 }
