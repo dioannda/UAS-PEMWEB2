@@ -42,5 +42,8 @@ $routes->get('/pengingat/edit/(:num)', 'PengingatPembayaranController::edit/$1')
 $routes->post('/pengingat/update/(:num)', 'PengingatPembayaranController::update/$1');
 $routes->get('/pengingat/delete/(:num)', 'PengingatPembayaranController::delete/$1');
 $routes->get('/pengingat/selesai/(:num)', 'PengingatPembayaranController::markAsSelesai/$1'); // opsional
+$routes->get('/transaksi/pemasukan', 'Transaksi::pemasukan');
+$routes->get('/transaksi/pengeluaran', 'Transaksi::pengeluaran');
+$routes->get('/transaksi/saldo', 'Transaksi::saldo');
 
 

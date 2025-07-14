@@ -9,9 +9,10 @@
                 <img src="<?= base_url('assets/img/fn1.png') ?>" alt="Finote Logo" style="height: 48px; width: auto;">
 
                 <h2 class="mb-0"
-                    style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 40px;">
-                    <span style="color:rgb(197, 6, 250)">F</span>inote
-                </h2>
+    style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 40px;">
+    <span style="color: rgb(197, 6, 250);">F</span><span class="shiny-text">inote</span>
+</h2>
+
             </div>
 
 
@@ -26,17 +27,17 @@
             <form method="post" action="/login">
                 <?= csrf_field() ?>
                 <div class="mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Enter your email address"
-                        required>
+                    <input type="email" name="email" class="form-control" placeholder="Masukkan Alamat Email" required>
+
                 </div>
 
                 <div class="mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Enter your password"
-                        required>
+                    <input type="password" name="password" class="form-control" placeholder="Masukkan Kata Sandi" required>
+
                 </div>
 
                 <div class="d-grid mb-2">
-                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    <button type="submit" class="btn btn-primary">Masuk</button>
                 </div>
 
                 <p class="text-center text-muted mt-3 mb-1">OR</p>
@@ -59,5 +60,23 @@
 
     </div>
 </div>
+<style>
+    .shiny-text {
+        background: linear-gradient(90deg, #ffffff, #bbbbbb, #ffffff);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 2s linear infinite;
+    }
+
+    @keyframes shine {
+        0% {
+            background-position: 200% center;
+        }
+        100% {
+            background-position: -200% center;
+        }
+    }
+</style>
 
 <?= $this->endSection() ?>
