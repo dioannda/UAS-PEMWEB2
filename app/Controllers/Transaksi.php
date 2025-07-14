@@ -84,45 +84,55 @@ class Transaksi extends BaseController
          session()->setFlashdata('success', 'Transaksi berhasil dihapus!');
     return redirect()->to('/transaksi');
     }
-    public function pemasukan()
+   public function pemasukan()
 {
-    $model = new TransaksiModel();
     $userId = session()->get('user_id');
+    $db = \Config\Database::connect();
 
-    $data['transaksi'] = $model
-        ->where('user_id', $userId)
-        ->where('tipe', 'pemasukan')
-        ->orderBy('tanggal', 'DESC')
-        ->findAll();
+    $builder = $db->table('transaksi');
+    $builder->select('transaksi.*, kategori.nama AS kategori_nama');
+    $builder->join('kategori', 'kategori.id = transaksi.kategori', 'left');
+    $builder->where('transaksi.user_id', $userId);
+    $builder->where('transaksi.tipe', 'pemasukan');
+    $builder->orderBy('transaksi.tanggal', 'DESC');
+
+    $data['transaksi'] = $builder->get()->getResultArray();
 
     return view('transaksi/pemasukan', $data);
 }
 
 public function pengeluaran()
 {
-    $model = new TransaksiModel();
     $userId = session()->get('user_id');
+    $db = \Config\Database::connect();
 
-    $data['transaksi'] = $model
-        ->where('user_id', $userId)
-        ->where('tipe', 'pengeluaran')
-        ->orderBy('tanggal', 'DESC')
-        ->findAll();
+    $builder = $db->table('transaksi');
+    $builder->select('transaksi.*, kategori.nama AS kategori_nama');
+    $builder->join('kategori', 'kategori.id = transaksi.kategori', 'left');
+    $builder->where('transaksi.user_id', $userId);
+    $builder->where('transaksi.tipe', 'pengeluaran');
+    $builder->orderBy('transaksi.tanggal', 'DESC');
+
+    $data['transaksi'] = $builder->get()->getResultArray();
 
     return view('transaksi/pengeluaran', $data);
 }
 
+
 public function saldo()
 {
-    $model = new TransaksiModel();
     $userId = session()->get('user_id');
+    $db = \Config\Database::connect();
 
-    $data['transaksi'] = $model
-        ->where('user_id', $userId)
-        ->orderBy('tanggal', 'DESC')
-        ->findAll();
+    $builder = $db->table('transaksi');
+    $builder->select('transaksi.*, kategori.nama AS kategori_nama');
+    $builder->join('kategori', 'kategori.id = transaksi.kategori', 'left');
+    $builder->where('transaksi.user_id', $userId);
+    $builder->orderBy('transaksi.tanggal', 'DESC');
 
-    $result = $model->select(
+    $data['transaksi'] = $builder->get()->getResultArray();
+
+    $result = $db->table('transaksi')->select(
         'SUM(CASE WHEN tipe = "pemasukan" THEN nominal ELSE 0 END) as total_pemasukan,
          SUM(CASE WHEN tipe = "pengeluaran" THEN nominal ELSE 0 END) as total_pengeluaran'
     )->where('user_id', $userId)->get()->getRow();
@@ -131,5 +141,6 @@ public function saldo()
 
     return view('transaksi/saldo', $data);
 }
+
 
 }

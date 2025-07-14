@@ -13,13 +13,16 @@ class Laporan extends BaseController
         $tahun = $this->request->getPost('tahun') ?? date('Y');
 
         $userId = session()->get('user_id');
-        $transaksiModel = new TransaksiModel();
+        $db = \Config\Database::connect();
 
-        $transaksi = $transaksiModel
-            ->where('user_id', $userId)
-            ->like('tanggal', "$tahun-$bulan", 'after')
-            ->orderBy('tanggal', 'ASC')
-            ->findAll();
+        $builder = $db->table('transaksi');
+        $builder->select('transaksi.*, kategori.nama AS kategori_nama');
+        $builder->join('kategori', 'kategori.id = transaksi.kategori', 'left');
+        $builder->where('transaksi.user_id', $userId);
+        $builder->like('transaksi.tanggal', "$tahun-$bulan", 'after');
+        $builder->orderBy('transaksi.tanggal', 'ASC');
+
+        $transaksi = $builder->get()->getResultArray();
 
         $pemasukan = 0;
         $pengeluaran = 0;
@@ -49,13 +52,16 @@ class Laporan extends BaseController
         $tahun = $this->request->getGet('tahun') ?? date('Y');
 
         $userId = session()->get('user_id');
-        $transaksiModel = new TransaksiModel();
+        $db = \Config\Database::connect();
 
-        $transaksi = $transaksiModel
-            ->where('user_id', $userId)
-            ->like('tanggal', "$tahun-$bulan", 'after')
-            ->orderBy('tanggal', 'ASC')
-            ->findAll();
+        $builder = $db->table('transaksi');
+        $builder->select('transaksi.*, kategori.nama AS kategori_nama');
+        $builder->join('kategori', 'kategori.id = transaksi.kategori', 'left');
+        $builder->where('transaksi.user_id', $userId);
+        $builder->like('transaksi.tanggal', "$tahun-$bulan", 'after');
+        $builder->orderBy('transaksi.tanggal', 'ASC');
+
+        $transaksi = $builder->get()->getResultArray();
 
         $pemasukan = 0;
         $pengeluaran = 0;
@@ -66,7 +72,6 @@ class Laporan extends BaseController
             else
                 $pengeluaran += $t['nominal'];
         }
-
 
         $pdf = new TCPDF();
         $pdf->SetTitle('Laporan Keuangan');
@@ -85,7 +90,7 @@ class Laporan extends BaseController
         foreach ($transaksi as $t) {
             $html .= "<tr>
                 <td>{$t['tanggal']}</td>
-                <td>{$t['kategori']}</td>
+                <td>{$t['kategori_nama']}</td>
                 <td>Rp " . number_format($t['nominal'], 0, ',', '.') . "</td>
                 <td>{$t['tipe']}</td>
                 <td>{$t['keterangan']}</td>

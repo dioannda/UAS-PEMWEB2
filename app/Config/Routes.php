@@ -45,5 +45,6 @@ $routes->get('/pengingat/selesai/(:num)', 'PengingatPembayaranController::markAs
 $routes->get('/transaksi/pemasukan', 'Transaksi::pemasukan');
 $routes->get('/transaksi/pengeluaran', 'Transaksi::pengeluaran');
 $routes->get('/transaksi/saldo', 'Transaksi::saldo');
+$routes->get('/transaksi/pemasukan', 'Transaksi::pemasukan');
 
 

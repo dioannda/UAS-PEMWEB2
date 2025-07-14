@@ -46,7 +46,7 @@
             <?php foreach ($transaksi as $t): ?>
             <tr>
                 <td><?= $t['tanggal'] ?></td>
-                <td><?= $t['kategori'] ?></td>
+                <td><?= $t['kategori_nama'] ?></td>
                 <td><?= ucfirst($t['tipe']) ?></td>
                 <td>Rp<?= number_format($t['nominal'], 0, ',', '.') ?></td>
             </tr>
