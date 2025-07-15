@@ -2,16 +2,30 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-4">
-    <h2>Tambah Kategori</h2>
-    <form action="/kategori/store" method="post">
+    <h2 class="mb-4 fw-bold text-primary">➕ Tambah Kategori</h2>
+
+    <form action="/kategori/store" method="post" class="bg-white p-4 rounded shadow-sm">
         <?= csrf_field() ?>
-        <input type="text" name="nama" class="form-control mb-2" placeholder="Nama Kategori" required>
-        <select name="tipe" class="form-control mb-2" required>
-            <option value="pemasukan">Pemasukan</option>
-            <option value="pengeluaran">Pengeluaran</option>
-        </select>
-        <button type="submit" class="btn btn-success">Simpan</button>
-        <a href="/kategori" class="btn btn-secondary">Kembali</a>
+
+        <div class="mb-3">
+            <label for="nama" class="form-label fw-semibold">Nama Kategori</label>
+            <input type="text" name="nama" id="nama" class="form-control" placeholder="Contoh: Gaji, Makanan, Transport"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label for="tipe" class="form-label fw-semibold">Tipe Kategori</label>
+            <select name="tipe" id="tipe" class="form-select" required>
+                <option value="">Pilih Tipe</option>
+                <option value="pemasukan">Pemasukan</option>
+                <option value="pengeluaran">Pengeluaran</option>
+            </select>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+            <button type="submit" class="btn btn-success me-2">💾 Simpan</button>
+            <a href="/kategori" class="btn btn-outline-secondary">Kembali</a>
+        </div>
     </form>
 </div>
 
