@@ -6,10 +6,11 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Daftar Transaksi</h2>
-        <a href="/kategori/" class="btn btn-success">+ Tambah Kategori</a>
+        <div class="d-flex gap-2">
+            <a href="/transaksi/create" class="btn btn-primary">+ Tambah Transaksi</a>
+            <a href="/kategori/" class="btn btn-success">+ Tambah Kategori</a>
+        </div>
     </div>
-
-    <a href="/transaksi/create" class="btn btn-primary mb-3">+ Tambah Transaksi</a>
 
     <?php if (session()->getFlashdata('success')): ?>
         <script>
@@ -34,9 +35,10 @@
         </script>
     <?php endif; ?>
 
-    <table class="table table-bordered">
-        <thead class="table-light">
+    <table class="table table-bordered table-rounded">
+        <thead class="table-header-finote">
             <tr>
+
                 <th>Tanggal</th>
                 <th>Kategori</th>
                 <th>Tipe</th>
@@ -48,13 +50,14 @@
             <?php foreach ($transaksi as $t): ?>
                 <tr>
                     <td><?= $t['tanggal'] ?></td>
-                   <td><?= $t['kategori_nama'] ?></td>
+                    <td><?= $t['kategori_nama'] ?></td>
 
                     <td><?= ucfirst($t['tipe']) ?></td>
                     <td>Rp<?= number_format($t['nominal'], 0, ',', '.') ?></td>
                     <td>
                         <a href="/transaksi/edit/<?= $t['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <button class="btn btn-danger btn-sm" onclick="confirmDeleteTransaksi(<?= $t['id'] ?>)">Hapus</button>
+                        <button class="btn btn-danger btn-sm"
+                            onclick="confirmDeleteTransaksi(<?= $t['id'] ?>)">Hapus</button>
                     </td>
                 </tr>
             <?php endforeach ?>
@@ -64,22 +67,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-function confirmDeleteTransaksi(id) {
-    Swal.fire({
-        title: 'Yakin ingin menghapus transaksi?',
-        text: "Data yang dihapus tidak bisa dikembalikan!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Ya, hapus!',
-        cancelButtonText: 'Batal'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "/transaksi/delete/" + id;
-        }
-    })
-}
+    function confirmDeleteTransaksi(id) {
+        Swal.fire({
+            title: 'Yakin ingin menghapus transaksi?',
+            text: "Data yang dihapus tidak bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/transaksi/delete/" + id;
+            }
+        })
+    }
 </script>
 
 <?= $this->endSection() ?>

@@ -6,17 +6,16 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <a href="/dashboard" class="btn btn-danger">← Back</a>
         <h2 class="mb-0">Pengingat Pembayaran</h2>
-        <div></div> <!-- agar judul tetap di tengah -->
+        <a href="/pengingat/create" class="btn btn-success">+ Tambah Pengingat</a>
     </div>
 
     <?php if (session()->getFlashdata('success')): ?>
         <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
     <?php endif; ?>
 
-    <a href="/pengingat/create" class="btn btn-success mb-3">+ Tambah Pengingat</a>
-
     <table class="table table-bordered">
-        <thead class="table-light">
+        <thead class="table-header-finote">
+
             <tr>
                 <th>Deskripsi</th>
                 <th>Tanggal Pembayaran</th>

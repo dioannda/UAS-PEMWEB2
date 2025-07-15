@@ -6,53 +6,56 @@
         <h2>Ringkasan Keuangan Bulan Ini</h2>
         <div>
             <a href="/laporan" class="btn btn-outline-primary me-2">📄 Lihat Laporan</a>
-            <a href="/transaksi/" class="btn btn-success">+ Tambah Transaksi</a>
+            <a href="/transaksi/" class="btn btn-outline-success me-2">➕ Tambah Transaksi</a>
             <a href="/pengingat" class="btn btn-outline-secondary me-2">🔔 Pengingat Pembayaran</a>
 
         </div>
     </div>
 
-   
-        <div class="alert alert-warning d-flex align-items-center gap-2">
-            <i class="bi bi-exclamation-triangle-fill"></i>
-            <div>Hai <?= session()->get('nama') ?>, kamu belum mencatat transaksi hari ini. Yuk catat sekarang!
-                <a href="/transaksi/create" class="btn btn-sm btn-warning ms-2">+ Catat Sekarang</a>
-            </div>
+
+    <div class="alert alert-warning d-flex align-items-center gap-2">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <div>Hai <?= session()->get('nama') ?>, kamu belum mencatat transaksi hari ini. Yuk catat sekarang!
+            <a href="/transaksi/create" class="btn btn-sm btn-warning ms-2">+ Catat Sekarang</a>
         </div>
-    
+    </div>
+
 
     <div class="row">
         <div class="col-md-4">
             <a href="/transaksi/pemasukan" class="text-decoration-none">
-    <div class="card bg-success text-white mb-3">
-        <div class="card-body">
-            <h5 class="card-title">Pemasukan</h5>
-            <p class="card-text">Rp<?= number_format($pemasukan, 0, ',', '.') ?></p>
-        </div>
-    </div>
-</a>
+                <div class="card text-white mb-3" style="background-color: #20c997;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Pemasukan</h5>
+                        <p class="card-text">Rp<?= number_format($pemasukan, 0, ',', '.') ?></p>
+                    </div>
+                </div>
+            </a>
 
         </div>
         <div class="col-md-4">
             <a href="/transaksi/pengeluaran" class="text-decoration-none">
-    <div class="card bg-success text-white mb-3">
-        <div class="card-body">
-            <h5 class="card-title">Pengeluaran</h5>
-            <p class="card-text">Rp<?= number_format($pengeluaran, 0, ',', '.') ?></p>
-        </div>
-    </div>
-</a>
+                <div class="card text-white mb-3" style="background-color: #dc3545;;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Pengeluaran</h5>
+                        <p class="card-text">Rp<?= number_format($pengeluaran, 0, ',', '.') ?></p>
+                    </div>
+                </div>
+            </a>
 
         </div>
         <div class="col-md-4">
             <a href="/transaksi/saldo" class="text-decoration-none">
-    <div class="card bg-success text-white mb-3">
-        <div class="card-body">
-            <h5 class="card-title">Saldo Saat Ini</h5>
-            <p class="card-text">Rp<?= number_format($saldo, 0, ',', '.') ?></p>
-        </div>
-    </div>
-</a>
+                <div class="card text-white mb-3" style="background-color: #1e90ff;">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Saldo Saat Ini</h5>
+                        <p class="card-text">Rp<?= number_format($saldo, 0, ',', '.') ?></p>
+                    </div>
+                </div>
+            </a>
 
         </div>
     </div>
